@@ -1,12 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
+
+import Todos from './src/components/Todos';
+import CreateItem from './src/components/CreateItem';
+import useTodos from './src/hooks/useTodos';
 
 export default function App() {
+  const { addTodo, todos, removeTodo, toggleTodo } = useTodos();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Todos todos={todos} onTodoRemove={removeTodo} onTodoToggle={toggleTodo} />
+      <CreateItem onTodoAdd={addTodo} />
+    </SafeAreaView>
   );
 }
 
