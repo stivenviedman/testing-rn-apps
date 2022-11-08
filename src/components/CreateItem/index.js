@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, View, TextInput, Pressable, StyleSheet } from 'react-native';
+import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
 const CreateItem = ({ onTodoAdd }) => {
   const [title, setTitle] = useState('');
@@ -16,11 +16,17 @@ const CreateItem = ({ onTodoAdd }) => {
         onChangeText={setTitle}
         value={title}
       />
-      <Pressable style={style.button} onPress={onPress}>
+      <TouchableOpacity
+        accessibilityLabel='Add todo button'
+        activeOpacity={0.5}
+        style={style.button}
+        onPress={onPress}
+        disabled={title === ''}
+      >
         <Text>
           Add
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   )
 };

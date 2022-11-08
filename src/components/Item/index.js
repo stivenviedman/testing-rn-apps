@@ -1,23 +1,20 @@
 import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native';
-
-const CheckedIcon = () => <Image style={styles.icon} source={require('../../assets/checked.png')}/>;
-
-const UncheckedIcon = () => <Image style={styles.icon} source={require('../../assets/unchecked.png')}/>;
+import Checkbox from '../Checkbox';
 
 const Item = ({ title, done, id, onTodoRemove, onTodoToggle }) => {
   const onRemove = () => onTodoRemove(id);
   const onToggle = () => onTodoToggle(id);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} accessible accessibilityLabel={title} accessibilityHint='Todo item'>
       <View style={styles.leftContainer}>
         <TouchableOpacity activeOpacity={0.5} onPress={onToggle}>
-          {done ? <CheckedIcon /> : <UncheckedIcon />}
+          <Checkbox checked={done} />
         </TouchableOpacity>
         <Text style={styles.title(done)}>{title}</Text>
       </View>
       <View style={styles.rightContainer}>
-        <TouchableOpacity activeOpacity={0.5} style={styles.removeButton} onPress={onRemove}>
+        <TouchableOpacity accessibilityLabel='Remove todo icon' activeOpacity={0.5} style={styles.removeButton} onPress={onRemove}>
           <Image style={styles.icon} source={require('../../assets/remove.png')}/>
         </TouchableOpacity>
       </View>
