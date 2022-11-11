@@ -1,5 +1,5 @@
-import CreateItem from './index';
 import { render, screen, fireEvent } from '@testing-library/react-native';
+import CreateItem from './index';
 
 const onTodoAdd = jest.fn();
 
@@ -44,11 +44,17 @@ describe('<CreateItem />', () => {
     render(<CreateItem onTodoAdd={onTodoAdd} />);
   
     fireEvent(screen.getByDisplayValue(''), 'onChangeText', 'Take dog out');
+
+    const filledTextInput = screen.getByDisplayValue('Take dog out');
+    expect(filledTextInput).toBeDefined();
+
     fireEvent(screen.getByLabelText('Add todo button'), 'press');
 
     const disabledAddButton = screen.getByLabelText('Add todo button', { disabled: true });
+    const emptyTextInput = screen.getByDisplayValue('');
 
     expect(onTodoAdd).toHaveBeenCalledWith('Take dog out');
     expect(disabledAddButton).toBeDefined();
+    expect(emptyTextInput).toBeDefined();
   });
 });

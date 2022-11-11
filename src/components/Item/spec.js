@@ -1,5 +1,5 @@
-import Item from './index';
 import { render, screen } from '@testing-library/react-native';
+import Item from './index';
 
 const onTodoRemove = jest.fn();
 const onTodoToggle = jest.fn();

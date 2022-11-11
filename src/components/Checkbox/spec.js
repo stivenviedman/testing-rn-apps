@@ -1,5 +1,5 @@
-import Checkbox from './index';
 import { render, screen } from '@testing-library/react-native';
+import Checkbox from './index';
 
 describe('<Checkbox />', () => {
   it('should render in checked state when checked prop is true', () => {
